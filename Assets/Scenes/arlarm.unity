@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 3}
-  mun: {fileID: -927199367670048503, guid: 62e935e09827b0e45b3d97aa8d85a9e8, type: 3}
+  mun: {fileID: 1173694021483399613, guid: f8d0e82812ef70542950b0e2ba2db3ab, type: 3}
 --- !u!4 &1770732879
 Transform:
   m_ObjectHideFlags: 0
