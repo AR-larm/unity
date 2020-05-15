@@ -20,7 +20,8 @@ public class Detect_Plane_script : MonoBehaviour
     public GameObject mun;
 
     //private Anchor anchor;
-    public static List<Anchor> munmuns = new List<Anchor>();    //먼먼이 anchor들을 저장. 이후 먼먼이들의 위치 및 터치시의 listener에서 사용 예정.
+    public static List<GameObject> munmuns = new List<GameObject>();    //먼먼이 오브젝트들을 저장. 이후 먼먼이들의 위치 및 터치시의 listener에서 사용 예정.
+    public static List<GameObject> planes = new List<GameObject>();     //먼먼이 오브젝트가 위치한 plane들을 저장. 이후 터치시의 listener에서 사용 예정.
 
     private Camera ARCamera;    //ARCore 카메라
     //private int count;
@@ -28,6 +29,7 @@ public class Detect_Plane_script : MonoBehaviour
     public void Start()
     {
         ARCamera = GameObject.Find("First Person Camera").GetComponent<Camera>();
+
         //count = 0;
     }
 
@@ -62,21 +64,49 @@ public class Detect_Plane_script : MonoBehaviour
             //tracking이 진행중일때 먼먼이를 plane위에 생성.
             if (m_NewPlanes[i].TrackingState == TrackingState.Tracking)
             {
+
+                //MunMunAvatarBehave_script.mun_anim1.SetBool("isRoll", true);
                 GameObject obj = Instantiate(mun, new Vector3(m_NewPlanes[i].CenterPose.position.x, m_NewPlanes[i].CenterPose.position.y, m_NewPlanes[i].CenterPose.position.z), Quaternion.identity, transform);
                 
+                //먼먼이 오브젝트를 Stick state로 설정
+                Animator animator = obj.GetComponent<Animator>();
+                animator.applyRootMotion = true;
+                animator.runtimeAnimatorController = Resources.Load("0501mun/mun_anim") as RuntimeAnimatorController;
+                animator.SetBool("isStick", true);
+                
+                Debug.Log("mun position: " + obj.transform.localPosition);
+                Debug.Log("Center position: " + m_NewPlanes[i].CenterPose.position);
+
+
                 //먼먼이 object의 방향을 카메라가 보는 방향으로 설정
+                float dz = obj.transform.position.z - ARCamera.transform.position.z;
+                float dx = obj.transform.position.x - ARCamera.transform.position.x;
+
+                float rotateDegree = Mathf.Atan2(dz, dx) * Mathf.Rad2Deg;
+                obj.transform.rotation = Quaternion.Euler(0f, -rotateDegree, 0f);
+
+
+
+                /*
+                Debug.Log("mun Rotation: " + obj.transform.rotation.eulerAngles);
+                Debug.Log("Camera Rotation: " + ARCamera.transform.rotation.eulerAngles);
+                */
+
+                /*
                 var direction = Quaternion.LookRotation(obj.gameObject.transform.position - ARCamera.transform.position).eulerAngles;
                 direction.x = m_NewPlanes[i].CenterPose.position.x;
                 direction.z = m_NewPlanes[i].CenterPose.position.z;
                 obj.transform.rotation = Quaternion.Euler(direction);
-                
+                */
+
                 //먼먼이 object 사이즈 변경
                 obj.transform.localScale = new Vector3(1, 1, 1);
 
                 anchor = m_NewPlanes[i].CreateAnchor(m_NewPlanes[i].CenterPose);
                 obj.transform.parent = anchor.transform;
 
-                munmuns.Add(anchor);
+                munmuns.Add(obj);
+                planes.Add(planeObject);
 
                 //Debug.Log("position: " + anchor.transform.localPosition);
                 break;
@@ -95,7 +125,7 @@ public class Detect_Plane_script : MonoBehaviour
             }
         }
         */
-        
+
 
         /*
         GameObject obj = Instantiate(mun, Vector3.zero, Quaternion.identity);
