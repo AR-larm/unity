@@ -44,9 +44,6 @@ public class Detect_Plane_script : MonoBehaviour
         {
             return;
         }
-        //Debug.Log("camera rotation " + count + ": " + ARCamera.transform.rotation.x);
-        //count++;
-
 
         // Iterate over planes found in this frame and instantiate corresponding GameObjects to
         // visualize them.
@@ -85,20 +82,6 @@ public class Detect_Plane_script : MonoBehaviour
                 float rotateDegree = Mathf.Atan2(dz, dx) * Mathf.Rad2Deg;
                 obj.transform.rotation = Quaternion.Euler(0f, -rotateDegree, 0f);
 
-
-
-                /*
-                Debug.Log("mun Rotation: " + obj.transform.rotation.eulerAngles);
-                Debug.Log("Camera Rotation: " + ARCamera.transform.rotation.eulerAngles);
-                */
-
-                /*
-                var direction = Quaternion.LookRotation(obj.gameObject.transform.position - ARCamera.transform.position).eulerAngles;
-                direction.x = m_NewPlanes[i].CenterPose.position.x;
-                direction.z = m_NewPlanes[i].CenterPose.position.z;
-                obj.transform.rotation = Quaternion.Euler(direction);
-                */
-
                 //먼먼이 object 사이즈 변경
                 obj.transform.localScale = new Vector3(1, 1, 1);
 
@@ -113,24 +96,5 @@ public class Detect_Plane_script : MonoBehaviour
             }
 
         }
-        //앵커들 위치 이동
-        /*
-        if (munmuns.Count!=0)
-        {
-            for(int i = 0; i < munmuns.Count; i++)
-            {
-                munmuns[i].transform.Translate(Vector3.forward * Time.deltaTime * 0.5f);
-                //Debug.Log("position of MunMun Num "+i+": " + munmuns[i].transform.localPosition);
-
-            }
-        }
-        */
-
-
-        /*
-        GameObject obj = Instantiate(mun, Vector3.zero, Quaternion.identity);
-        obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        obj.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[0]);
-        */
     }
 }
