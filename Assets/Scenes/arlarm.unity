@@ -470,6 +470,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8adf12736b4264cac3ac59773d560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  broomstick: {fileID: 2019244199156811768, guid: c4e0837bfdf18c9409443424ee3f583f,
+    type: 3}
 --- !u!4 &1055514301
 Transform:
   m_ObjectHideFlags: 0
@@ -776,7 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 3}
-  mun: {fileID: 100000, guid: bee6223a898b53f4f9ceef8a8d4d7188, type: 3}
+  mun: {fileID: 1983287013245455846, guid: 5be066c61259df94881b9d4d278ea002, type: 3}
 --- !u!4 &1770732879
 Transform:
   m_ObjectHideFlags: 0

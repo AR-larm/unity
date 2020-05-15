@@ -22,6 +22,7 @@ public class Detect_Plane_script : MonoBehaviour
     //private Anchor anchor;
     public static List<GameObject> munmuns = new List<GameObject>();    //먼먼이 오브젝트들을 저장. 이후 먼먼이들의 위치 및 터치시의 listener에서 사용 예정.
     public static List<GameObject> planes = new List<GameObject>();     //먼먼이 오브젝트가 위치한 plane들을 저장. 이후 터치시의 listener에서 사용 예정.
+    public static List<bool> munmuns_activationFlag = new List<bool>();    //먼먼이 오브젝트들을 저장. 이후 먼먼이들의 위치 및 터치시의 listener에서 사용 예정.
 
     private Camera ARCamera;    //ARCore 카메라
     //private int count;
@@ -90,6 +91,7 @@ public class Detect_Plane_script : MonoBehaviour
 
                 munmuns.Add(obj);
                 planes.Add(planeObject);
+                munmuns_activationFlag.Add(true);
 
                 //Debug.Log("position: " + anchor.transform.localPosition);
                 break;

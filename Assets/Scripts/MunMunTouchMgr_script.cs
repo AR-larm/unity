@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
 using System.IO;
+using System.Security.Cryptography;
 
 public class MunMunTouchMgr_script : MonoBehaviour
 {
     private Camera ARCamera;    //ARCore 카메라
 
     public static int munmun_catch_count;        //먼먼이 잡은 개수
+
+    public GameObject broomstick;
 
     // Start is called before the first frame update
     void Start()
@@ -63,11 +66,37 @@ public class MunMunTouchMgr_script : MonoBehaviour
                             && (hit.Pose.position.z - 0.1f < Detect_Plane_script.munmuns[i].transform.position.z && hit.Pose.position.z + 0.02f > Detect_Plane_script.munmuns[i].transform.position.z))
                         {
                             //먼먼이 터치시 mun_clean state로 바꿈
-                            Animator animator = Detect_Plane_script.munmuns[i].GetComponent<Animator>();
-                            animator.applyRootMotion = true;
-                            animator.runtimeAnimatorController = Resources.Load("0501mun/mun_anim") as RuntimeAnimatorController;
-                            animator.SetBool("isClean", true);
+                            Animator mun_animator = Detect_Plane_script.munmuns[i].GetComponent<Animator>();
+                            mun_animator.applyRootMotion = true;
+                            mun_animator.runtimeAnimatorController = Resources.Load("0501mun/mun_anim") as RuntimeAnimatorController;
+                            mun_animator.SetBool("isClean", true);
 
+                            if (Detect_Plane_script.munmuns_activationFlag[i] == true)
+                            {
+                                //빗자루 생성
+                                GameObject obj = Instantiate(broomstick, Detect_Plane_script.munmuns[i].transform.position, Detect_Plane_script.munmuns[i].transform.rotation);
+                                obj.SetActive(true);
+
+                                //빗자루 위치를 먼먼이 위로 세팅
+                                var b_pos = obj.transform.position;
+                                b_pos.y = b_pos.y + 0.14f;
+                                obj.transform.position = b_pos;
+
+                                obj.transform.Rotate(0, 0, 0, Space.Self);
+
+                                Animator broom_animatpr = broomstick.GetComponent<Animator>();
+                                broom_animatpr.applyRootMotion = true;
+                                broom_animatpr.runtimeAnimatorController = Resources.Load("0515/0501broom/broom_anim") as RuntimeAnimatorController;
+                                broom_animatpr.SetBool("isClean", true);
+
+                                Detect_Plane_script.munmuns_activationFlag[i] = false;
+
+                                //먼먼이 잡은 횟수 증가
+                                munmun_catch_count++;
+
+                                StartCoroutine(ExampleCoroutine2(obj));
+                            }
+                            
                             StartCoroutine(ExampleCoroutine(i));
                             
                             break;
@@ -93,6 +122,11 @@ public class MunMunTouchMgr_script : MonoBehaviour
         Detect_Plane_script.planes.RemoveAt(position);
     }
 
+    void MunMun_ActiveFlag_Delet(int position)
+    {
+        Detect_Plane_script.munmuns_activationFlag.RemoveAt(position);
+    }
+
     //먼먼이 2초 뒤 삭제 진행
     IEnumerator ExampleCoroutine(int position)
     {
@@ -102,12 +136,16 @@ public class MunMunTouchMgr_script : MonoBehaviour
         yield return new WaitForSeconds(2f);
         MunMun_Delete(position);
         MunMun_DetectedPlane_Delete(position);
-
-        //먼먼이 잡은 횟수 증가
-        munmun_catch_count++;
+        MunMun_ActiveFlag_Delet(position);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 
+    IEnumerator ExampleCoroutine2(GameObject b_obj)
+    {
+        yield return new WaitForSeconds(2f);
+        b_obj.SetActive(false);
+        //Destroy(b_obj);
+    }
 }
