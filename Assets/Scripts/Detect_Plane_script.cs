@@ -84,6 +84,7 @@ public class Detect_Plane_script : MonoBehaviour
                 obj.transform.rotation = Quaternion.Euler(0f, -rotateDegree, 0f);
 
                 //먼먼이 object 사이즈 변경
+                //먼먼이 object 사이즈 변경
                 obj.transform.localScale = new Vector3(1, 1, 1);
 
                 anchor = m_NewPlanes[i].CreateAnchor(m_NewPlanes[i].CenterPose);

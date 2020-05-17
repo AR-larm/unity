@@ -26,7 +26,7 @@ public class MunMunTouchMgr_script : MonoBehaviour
     void Update()
     {
         int prev_catch_count = munmun_catch_count;
-        Debug.Log("Camera Position: " + ARCamera.transform.position);
+        //Debug.Log("Camera Position: " + ARCamera.transform.position);
         if (Detect_Plane_script.munmuns.Count != 0)
         {
             for (int i = 0; i < Detect_Plane_script.munmuns.Count; i++)
