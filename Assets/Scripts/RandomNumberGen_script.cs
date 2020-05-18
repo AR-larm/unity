@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class RandomNumberGen_script : MonoBehaviour
 {
     private const string NonCapitilizedLetters = "abcdefghijklmnopqrstuvwxyz";
-    private const string Numbers = "0123456789z";
+    private const string Numbers = "0123456789";
     private System.Random random;
 
     public static Text RanString;
@@ -23,18 +23,7 @@ public class RandomNumberGen_script : MonoBehaviour
         charSets.Add(NonCapitilizedLetters);
         charSets.Add(Numbers);
 
-        int length;
-        bool canConvert;
-
-        canConvert = int.TryParse("6", out length);
-
-        // length = int.Parse(txtLength.Text); // 포맷 에러 가능성
-
-        if (canConvert == false || length <= 0)
-        {
-            return;
-        }
-
+        int length = 6;
         StringBuilder sb = new StringBuilder();
 
         while (length-- > 0)
