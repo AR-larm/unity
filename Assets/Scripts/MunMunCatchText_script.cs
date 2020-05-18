@@ -23,7 +23,12 @@ public class MunMunCatchText_script : MonoBehaviour
         //먼먼이 잡는 횟수 3회시 게임 종료
         if(MunMunTouchMgr_script.munmun_catch_count == 3)
         {
-            Application.Quit();
+            StartCoroutine(ExampleCoroutine3());
         }
+    }
+    IEnumerator ExampleCoroutine3()
+    {
+        yield return new WaitForSeconds(2f);
+        Application.Quit();
     }
 }
