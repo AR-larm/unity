@@ -20,8 +20,8 @@ public class MunMunCatchText_script : MonoBehaviour
     {
         myScore.text = "잡은 먼먼이 개수: " + MunMunTouchMgr_script.munmun_catch_count;
 
-
-        if (MunMunTouchMgr_script.munmun_catch_count == 1)
+        //먼먼이 잡는 횟수 3회시 게임 종료
+        if (MunMunTouchMgr_script.munmun_catch_count == 3)
         {
             StartCoroutine(ExampleCoroutine3());
 
@@ -30,13 +30,6 @@ public class MunMunCatchText_script : MonoBehaviour
             GameObject.Find("MunMunTouchManager").GetComponent<MunMunTouchMgr_script>().enabled = false;
         }
 
-        /*
-        //먼먼이 잡는 횟수 3회시 게임 종료
-        if(MunMunTouchMgr_script.munmun_catch_count == 3)
-        {
-            StartCoroutine(ExampleCoroutine3());
-        }
-        */
     }
     IEnumerator ExampleCoroutine3()
     {
