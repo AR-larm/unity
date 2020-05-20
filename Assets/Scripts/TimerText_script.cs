@@ -20,7 +20,10 @@ public class TimerText_script : MonoBehaviour
         time_left = GameObject.Find("TimeLeft").GetComponent<Text>();
         stopwatch.Start();
         //GameObject.Find("Panel").SetActive(false);
+
         Panel_script.panel.SetActive(false);
+        Panel2_script.success_panel.SetActive(false);
+
     }
 
     // Update is called once per frame
