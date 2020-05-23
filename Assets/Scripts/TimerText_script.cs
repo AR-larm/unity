@@ -9,7 +9,7 @@ using GoogleARCore.Examples.Common;
 
 public class TimerText_script : MonoBehaviour
 {
-    Stopwatch stopwatch = new Stopwatch();
+
     private Text time_left;
 
     public static bool panelOn = false;
@@ -18,7 +18,6 @@ public class TimerText_script : MonoBehaviour
     void Start()
     {
         time_left = GameObject.Find("TimeLeft").GetComponent<Text>();
-        stopwatch.Start();
         //GameObject.Find("Panel").SetActive(false);
 
         Panel_script.panel.SetActive(false);
@@ -29,9 +28,9 @@ public class TimerText_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Double t_left_second = 120 - stopwatch.ElapsedMilliseconds / 1000f;
+        Double t_left_second = 120 - startbutton_script.stopwatch.ElapsedMilliseconds / 1000f;
 
-        //Double t_left_second = 10 - stopwatch.ElapsedMilliseconds / 1000f;
+        //Double t_left_second = 10 - startbutton_script.stopwatch.ElapsedMilliseconds / 1000f;
 
         if (t_left_second <= 0)
         {
