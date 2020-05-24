@@ -16,6 +16,7 @@ public class Panel3_script : MonoBehaviour
         GameObject.Find("PlaneVisualizer").GetComponent<Detect_Plane_script>().enabled = false;
         GameObject.Find("MunMunTouchManager").GetComponent<MunMunTouchMgr_script>().enabled = false;
         GameObject.Find("TimeLeft").GetComponent<TimerText_script>().enabled = false;
+        Panel4_script.light_panel.SetActive(false);
 
     }
 }

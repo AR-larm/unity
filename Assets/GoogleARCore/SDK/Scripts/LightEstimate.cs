@@ -21,6 +21,7 @@
 namespace GoogleARCore
 {
     using GoogleARCoreInternal;
+    using System;
     using UnityEngine;
     using UnityEngine.Rendering;
 
@@ -293,6 +294,11 @@ namespace GoogleARCore
         /// </summary>
         /// <value>The timestamp of the LightEstimate.</value>
         public long Timestamp { get; private set; }
+
+        internal static string getLightEstimate()
+        {
+            throw new NotImplementedException();
+        }
 
         private void _InitializeLightEstimateMode()
         {

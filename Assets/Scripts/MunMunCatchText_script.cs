@@ -28,6 +28,7 @@ public class MunMunCatchText_script : MonoBehaviour
             GameObject.Find("PointCloud").GetComponent<PointcloudVisualizer>().enabled = false;
             GameObject.Find("PlaneVisualizer").GetComponent<Detect_Plane_script>().enabled = false;
             GameObject.Find("MunMunTouchManager").GetComponent<MunMunTouchMgr_script>().enabled = false;
+            Panel4_script.light_panel.SetActive(false);
         }
 
     }

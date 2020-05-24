@@ -24,6 +24,7 @@ public class startbutton_script : MonoBehaviour
         GameObject.Find("TimeLeft").GetComponent<TimerText_script>().enabled = true;
 
         Panel3_script.start_panel.SetActive(false);
+        Panel4_script.light_panel.SetActive(true);
 
         stopwatch = new Stopwatch();
         stopwatch.Start();
