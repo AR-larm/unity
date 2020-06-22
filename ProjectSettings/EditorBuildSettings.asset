@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/arlarm.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/arlarm_wordgame.unity
+    guid: 84a0faf50e7119246bd7e752b31a8baf
   m_configObjects: {}
